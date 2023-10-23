@@ -130,6 +130,7 @@ const loginUser = asyncHandler(async (req, res) => {
             httpOnly: true,
             sameSite: 'none',
             secure: true,
+            domain: '.reza-secureone-api.onrender.com',
             maxAge: 1000 * 60 * 60 * 2 // 4 Hours
         });
         res.cookie("refreshToken", refreshToken, {
@@ -137,6 +138,7 @@ const loginUser = asyncHandler(async (req, res) => {
             httpOnly: true,
             expires: new Date(Date.now() + 1000 * 86400 * 2), // 2 Days
             sameSite: 'none',
+            domain: '.reza-secureone-api.onrender.com',
             secure: true
         });
 
