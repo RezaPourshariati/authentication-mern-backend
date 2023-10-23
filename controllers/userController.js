@@ -130,12 +130,12 @@ const loginUser = asyncHandler(async (req, res) => {
             httpOnly: true,
             sameSite: 'none',
             secure: true,
-            maxAge: 1000 * 60
+            maxAge: 1000 * 60 * 60 * 2 // 4 Hours
         });
         res.cookie("refreshToken", refreshToken, {
             path: '/',
             httpOnly: true,
-            expires: new Date(Date.now() + 1000 * 86400), // 1 day
+            expires: new Date(Date.now() + 1000 * 86400 * 2), // 2 Days
             sameSite: 'none',
             secure: true
         });
@@ -148,7 +148,7 @@ const loginUser = asyncHandler(async (req, res) => {
             userId: user._id,
             refreshToken: newRefreshToken,
             createdAt: Date.now(),
-            expiresAt: Date.now() + 1000 * 86400 // 1-Day
+            expiresAt: Date.now() + 1000 * 86400 * 2 // 2 Days
         }).save();
 
         const {_id, name, email, phone, bio, photo, role, isVerified} = user;
